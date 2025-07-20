@@ -1,0 +1,25 @@
+<!-- File: public/dashboard.html -->
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard Absensi Wajah</title>
+  <script defer src="https://cdn.jsdelivr.net/npm/face-api.js"></script>
+  <script defer src="js/face.js"></script>
+  <script defer src="js/gsheet.js"></script>
+  <style>
+    body { font-family: sans-serif; padding: 2rem; }
+    button { margin: 0.5rem 0; padding: 0.75rem 1rem; font-size: 1rem; }
+    video { display: block; margin-top: 1rem; width: 100%; max-width: 400px; }
+  </style>
+</head>
+<body>
+  <h1>Dashboard Admin - Absensi Wajah</h1>
+
+  <button onclick="startAbsen()">📸 Mulai Absen</button>
+  <button onclick="inputWajahBaru()">➕ Input Wajah Baru</button>
+
+  <video id="video" autoplay muted playsinline></video>
+</body>
+</html>
