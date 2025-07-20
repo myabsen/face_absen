@@ -1,21 +1,41 @@
 <!-- File: public/index.html -->
-<script defer src="js/login.js"></script>
-
 <!DOCTYPE html>
 <html lang="id">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Login Absensi Wajah</title>
+  <script defer src="js/login.js"></script>
   <style>
-    body { font-family: sans-serif; padding: 2rem; }
-    button { margin: 1rem 0; padding: 1rem 2rem; font-size: 1.2rem; }
+    body {
+      font-family: sans-serif;
+      padding: 2rem;
+      max-width: 400px;
+      margin: auto;
+    }
+    h1 {
+      text-align: center;
+    }
+    input, button {
+      display: block;
+      margin-top: 1rem;
+      padding: 0.75rem;
+      width: 100%;
+      font-size: 1rem;
+    }
+    #pesan {
+      margin-top: 1rem;
+      font-weight: bold;
+      color: red;
+      text-align: center;
+    }
   </style>
 </head>
 <body>
-  <h1>Selamat Datang di Absensi Wajah</h1>
-  <p>Pilih jenis pengguna:</p>
-  <button onclick="location.href='dashboard.html'">🔐 Admin</button>
-  <button onclick="alert('Fitur user belum tersedia')">👤 User</button>
+  <h1>Login Absensi Wajah</h1>
+  <input type="text" id="username" placeholder="Username" />
+  <input type="password" id="password" placeholder="Password" />
+  <button onclick="prosesLogin()">Masuk</button>
+  <div id="pesan"></div>
 </body>
 </html>
