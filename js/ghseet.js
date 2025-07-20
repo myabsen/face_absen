@@ -1,7 +1,7 @@
 // File: public/js/gsheet.js
 
 // Ganti URL berikut dengan URL Web Apps dari Google Apps Script kamu
-const GAS_URL = "https://script.google.com/macros/s/AKfycbxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx/exec";
+const GAS_URL = "https://script.google.com/macros/s/AKfycbwe80uzI8OaCcOo3OtnsaZ-59WzqBt-oQwKDnp2VQeOOKgjwykQtPY8kkYU9kRSkCqw/exec";
 
 function kirimAbsenKeSheet(encoding) {
   const data = {
