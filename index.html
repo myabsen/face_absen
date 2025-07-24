@@ -1,45 +1,24 @@
 <!DOCTYPE html>
-<html lang="id">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <title>Face Recognition Absen</title>
+  <title>Test Load Model</title>
   <script defer src="https://cdn.jsdelivr.net/npm/face-api.js@0.22.2/dist/face-api.min.js"></script>
-  <script defer src="index.js"></script>
-  <style>
-    video {
-      border: 2px solid #000;
-      border-radius: 8px;
-    }
-    #login-section, #absen-section, #admin-section {
-      display: none;
-      margin-top: 20px;
-    }
-  </style>
 </head>
 <body>
-  <h1>Face Absen System</h1>
+  <h1>Cek Model face-api.js</h1>
+  <p id="status">Sedang memuat model...</p>
 
-  <div id="login-section">
-    <h2>Login</h2>
-    <input type="text" id="username" placeholder="Username"><br>
-    <input type="password" id="password" placeholder="Password"><br>
-    <button onclick="login()">Login</button>
-  </div>
-
-  <div id="absen-section">
-    <h2>Absen (User)</h2>
-    <video id="video" width="320" height="240" autoplay muted></video><br>
-    <button onclick="scanWajahUser()">Scan & Absen</button>
-    <div id="status-user"></div>
-  </div>
-
-  <div id="admin-section">
-    <h2>Tambahkan Data Wajah (Admin)</h2>
-    <video id="video-admin" width="320" height="240" autoplay muted></video><br>
-    <input type="text" id="nama" placeholder="Nama"><br>
-    <input type="text" id="posisi" placeholder="Posisi"><br>
-    <button onclick="scanWajahAdmin()">Scan & Simpan</button>
-    <div id="status-admin"></div>
-  </div>
+  <script>
+    Promise.all([
+      faceapi.nets.faceRecognitionNet.loadFromUri('models/face_recognition'),
+      faceapi.nets.faceLandmark68Net.loadFromUri('models/face_landmark_68'),
+      faceapi.nets.tinyFaceDetector.loadFromUri('models/tiny_face_detector')
+    ]).then(() => {
+      document.getElementById('status').innerText = '✅ Semua model berhasil dimuat!';
+    }).catch(err => {
+      document.getElementById('status').innerText = '❌ Gagal memuat model: ' + err.message;
+      console.error(err);
+    });
+  </script>
 </body>
 </html>
