@@ -56,7 +56,7 @@
         const pass = document.getElementById("password").value;
 
         // Kirim login ke Apps Script
-        const res = await fetch("LOGIN_SCRIPT_URL", {
+        const res = await fetch("https://script.google.com/macros/s/AKfycbzAZBU9JxhGe_NvKvYK03k8l624A-X-UTXs9JRoF8edecF6Z6kzCAWO4xCoA-_48t-8EA/exec", {
           method: "POST",
           body: JSON.stringify({ user, pass }),
           headers: { "Content-Type": "application/json" }
