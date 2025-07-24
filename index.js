@@ -80,11 +80,11 @@ async function scanWajahAdmin() {
   const data = await res.json();
   document.getElementById("status-admin").innerText = data.message;
 }
-
+ 
 Promise.all([
-  faceapi.nets.tinyFaceDetector.loadFromUri('models/tiny_face_detector'),
-  faceapi.nets.faceLandmark68Net.loadFromUri('models/face_landmark_68'),
-  faceapi.nets.faceRecognitionNet.loadFromUri('models/face_recognition')
+  faceapi.nets.tinyFaceDetector.loadFromUri('models/face_landmark_68'),
+  faceapi.nets.faceLandmark68Net.loadFromUri('models/face_recognition'),
+  faceapi.nets.faceRecognitionNet.loadFromUri('models/tiny_face_detector')
 ]).then(() => {
   document.getElementById("login-section").style.display = "block";
 }).catch(err => {
