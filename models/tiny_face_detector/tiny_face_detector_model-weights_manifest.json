@@ -1,15 +1,1 @@
-
-{
-  "weightsManifest": [
-    {
-      "paths": ["tiny_face_detector_model-shard1.bin"],
-      "weights": [
-        {
-          "name": "dummy_weight",
-          "shape": [1, 1, 64, 64],
-          "dtype": "float32"
-        }
-      ]
-    }
-  ]
-}
+placeholder
