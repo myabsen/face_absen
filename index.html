@@ -1,106 +1,45 @@
-<!-- index.html - WebApp face recognition absen -->
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="UTF-8" />
-    <title>Face Recognition Absen</title>
-    <script defer src="https://cdn.jsdelivr.net/npm/face-api.js"></script>
-    <style>
-      video {
-        border: 2px solid #000;
-        border-radius: 8px;
-      }
-      #login-section, #absen-section, #admin-section {
-        display: none;
-        margin-top: 20px;
-      }
-    </style>
-  </head>
-  <body>
-    <h1>Face Absen System</h1>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Face Recognition Absen</title>
+  <script defer src="https://cdn.jsdelivr.net/npm/face-api.js@0.22.2/dist/face-api.min.js"></script>
+  <script defer src="index.js"></script>
+  <style>
+    video {
+      border: 2px solid #000;
+      border-radius: 8px;
+    }
+    #login-section, #absen-section, #admin-section {
+      display: none;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Face Absen System</h1>
 
-    <div id="login-section">
-      <h2>Login</h2>
-      <input type="text" id="username" placeholder="Username"><br>
-      <input type="password" id="password" placeholder="Password"><br>
-      <button onclick="login()">Login</button>
-    </div>
+  <div id="login-section">
+    <h2>Login</h2>
+    <input type="text" id="username" placeholder="Username"><br>
+    <input type="password" id="password" placeholder="Password"><br>
+    <button onclick="login()">Login</button>
+  </div>
 
-    <div id="absen-section">
-      <h2>Absen (User)</h2>
-      <video id="video" width="320" height="240" autoplay muted></video><br>
-      <button onclick="scanWajahUser()">Scan & Absen</button>
-      <div id="status-user"></div>
-    </div>
+  <div id="absen-section">
+    <h2>Absen (User)</h2>
+    <video id="video" width="320" height="240" autoplay muted></video><br>
+    <button onclick="scanWajahUser()">Scan & Absen</button>
+    <div id="status-user"></div>
+  </div>
 
-    <div id="admin-section">
-      <h2>Tambahkan Data Wajah (Admin)</h2>
-      <video id="video-admin" width="320" height="240" autoplay muted></video><br>
-      <input type="text" id="nama" placeholder="Nama"><br>
-      <input type="text" id="posisi" placeholder="Posisi"><br>
-      <button onclick="scanWajahAdmin()">Scan & Simpan</button>
-      <div id="status-admin"></div>
-    </div>
-
-    <script>
-      let role = "";
-
-      async function startVideo(videoId) {
-        const video = document.getElementById(videoId);
-        const stream = await navigator.mediaDevices.getUserMedia({ video: {} });
-        video.srcObject = stream;
-      }
-
-      async function login() {
-        const user = document.getElementById("username").value;
-        const pass = document.getElementById("password").value;
-
-        // Kirim login ke Apps Script
-        const res = await fetch("https://script.google.com/macros/s/AKfycbzAZBU9JxhGe_NvKvYK03k8l624A-X-UTXs9JRoF8edecF6Z6kzCAWO4xCoA-_48t-8EA/exec", {
-          method: "POST",
-          body: JSON.stringify({ user, pass }),
-          headers: { "Content-Type": "application/json" }
-        });
-
-        const data = await res.json();
-        if (data.success) {
-          role = data.role;
-          document.getElementById("login-section").style.display = "none";
-
-          if (role === "user") {
-            document.getElementById("absen-section").style.display = "block";
-            startVideo("video");
-          } else if (role === "admin") {
-            document.getElementById("admin-section").style.display = "block";
-            startVideo("video-admin");
-          }
-        } else {
-          alert("Login gagal!");
-        }
-      }
-
-      async function scanWajahUser() {
-        // Ambil gambar dari video user, kirim ke Apps Script untuk dicek
-        document.getElementById("status-user").innerText = "Mencocokkan wajah...";
-        // TODO: ambil face descriptor, kirim ke script
-      }
-
-      async function scanWajahAdmin() {
-        const nama = document.getElementById("nama").value;
-        const posisi = document.getElementById("posisi").value;
-        document.getElementById("status-admin").innerText = "Mendeteksi dan menyimpan wajah...";
-        // TODO: ambil face descriptor, kirim ke script untuk simpan ke database
-      }
-
-      // Load model face-api.js saat awal
-      Promise.all([
-        faceapi.nets.tinyFaceDetector.loadFromUri("models")
-faceapi.nets.faceRecognitionNet.loadFromUri("models")
-faceapi.nets.faceLandmark68Net.loadFromUri("models")
-
-      ]).then(() => {
-        document.getElementById("login-section").style.display = "block";
-      });
-    </script>
-  </body>
+  <div id="admin-section">
+    <h2>Tambahkan Data Wajah (Admin)</h2>
+    <video id="video-admin" width="320" height="240" autoplay muted></video><br>
+    <input type="text" id="nama" placeholder="Nama"><br>
+    <input type="text" id="posisi" placeholder="Posisi"><br>
+    <button onclick="scanWajahAdmin()">Scan & Simpan</button>
+    <div id="status-admin"></div>
+  </div>
+</body>
 </html>
