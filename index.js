@@ -82,9 +82,10 @@ async function scanWajahAdmin() {
 }
  
 Promise.all([
- faceapi.nets.tinyFaceDetector.loadFromUri('models/tiny_face_detector')
-faceapi.nets.faceLandmark68Net.loadFromUri('models/face_landmark_68')
-faceapi.nets.faceRecognitionNet.loadFromUri('models/face_recognition')
+  faceapi.nets.tinyFaceDetector.loadFromUri('models/tiny_face_detector'),
+  faceapi.nets.faceLandmark68Net.loadFromUri('models/face_landmark_68'),
+  faceapi.nets.faceRecognitionNet.loadFromUri('models/face_recognition')
+
 ]).then(() => {
   document.getElementById("login-section").style.display = "block";
 }).catch(err => {
