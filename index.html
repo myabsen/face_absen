@@ -94,9 +94,10 @@
 
       // Load model face-api.js saat awal
       Promise.all([
-        faceapi.nets.tinyFaceDetector.loadFromUri("https://cdn.jsdelivr.net/npm/face-api.js/models"),
-        faceapi.nets.faceRecognitionNet.loadFromUri("https://cdn.jsdelivr.net/npm/face-api.js/models"),
-        faceapi.nets.faceLandmark68Net.loadFromUri("https://cdn.jsdelivr.net/npm/face-api.js/models")
+        faceapi.nets.tinyFaceDetector.loadFromUri("models")
+faceapi.nets.faceRecognitionNet.loadFromUri("models")
+faceapi.nets.faceLandmark68Net.loadFromUri("models")
+
       ]).then(() => {
         document.getElementById("login-section").style.display = "block";
       });
